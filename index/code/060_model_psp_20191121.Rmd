@@ -1,0 +1,240 @@
+---
+title: "Best subset regression on some Avian species from abundance data from Newfoundland"
+output:
+  html_document:
+    df_print: paged
+  html_notebook: default
+  pdf_document: default
+---
+
+
+```{r message=FALSE}
+Sys.time()
+library(finches.2)
+library(dplyr)
+library(purrr)
+library(here)
+library(yardstick)
+library(ggplot2)
+library(hrbrthemes)
+library("tidylog", warn.conflicts = FALSE)
+set.seed(1037)
+```
+
+
+```{r}
+
+psp_comb_long   <- readRDS(here::here("index", "data", "psp_combined_imp_spec_obs.rds")) %>% 
+  filter(
+    pt5to2 >= 0,
+    # zkurt >= 0,
+    zq90 >= 0,
+    dem < 814, # the highest point in NL is 814 m
+    edge > 0, # include points that are on the edge of the forest
+    binomial == c(
+     "Setophaga striata",
+     "Setophaga virens",
+     "Empidonax flaviventris",
+     "Perisoreus canadensis",
+     "Poecile hudsonicus",
+     "Sitta canadensis",
+     "Mniotilta varia",
+     "Seiurus aurocapilla",
+     "Contopus cooperi",
+     "Cyanocitta cristata", 
+     "Corvus corax", 
+     "Pinicola enucleator", 
+     "Spinus pinus", 
+     "Spinus tristis", 
+     "Haemorhous purpureus", 
+     "Gavia immer", 
+     "Setophaga petechia", 
+     "Setophaga magnolia", 
+     "Setophaga coronata", 
+     "Setophaga ruticilla", 
+     "Parkesia noveboracensis", 
+     "Geothlypis philadelphia", 
+     "Geothlypis trichas", 
+     "Cardellina pusilla", 
+     "Passerella iliaca", 
+     "Melospiza lincolnii", 
+     "Zonotrichia albicollis", 
+     "Junco hyemalis",  
+     "Picoides arcticus", 
+     "Regulus satrapa", 
+     "Regulus calendula", 
+     "Tringa melanoleuca",
+     "Gallinago delicata", 
+     "Troglodytes hiemalis", 
+     "Catharus ustulatus", 
+     "Catharus guttatus", 
+     "Turdus migratorius",
+     "Vireo solitarius"
+  )
+  ) 
+
+ebird_comb_long <- readRDS(here::here("index", "data", "ebird_combined_imp_spec_obs_long.rds")) %>% 
+  filter(
+    pt5to2 >= 0,
+    # zkurt >= 0,
+    zq90 >= 0,
+    dem < 814, # the highest point in NL is 814 m
+    edge > 0, # include points that are on the edge of the forest
+    binomial == c(
+     "Setophaga striata",
+     "Setophaga virens",
+     "Empidonax flaviventris",
+     "Perisoreus canadensis",
+     "Poecile hudsonicus",
+     "Sitta canadensis",
+     "Mniotilta varia",
+     "Seiurus aurocapilla",
+     "Contopus cooperi",
+     "Cyanocitta cristata", 
+     "Corvus corax", 
+     "Pinicola enucleator", 
+     "Spinus pinus", 
+     "Spinus tristis", 
+     "Haemorhous purpureus", 
+     "Gavia immer", 
+     "Setophaga petechia", 
+     "Setophaga magnolia", 
+     "Setophaga coronata", 
+     "Setophaga ruticilla", 
+     "Parkesia noveboracensis", 
+     "Geothlypis philadelphia", 
+     "Geothlypis trichas", 
+     "Cardellina pusilla", 
+     "Passerella iliaca", 
+     "Melospiza lincolnii", 
+     "Zonotrichia albicollis", 
+     "Junco hyemalis",  
+     "Picoides arcticus", 
+     "Regulus satrapa", 
+     "Regulus calendula", 
+     "Tringa melanoleuca",
+     "Gallinago delicata", 
+     "Troglodytes hiemalis", 
+     "Catharus ustulatus", 
+     "Catharus guttatus", 
+     "Turdus migratorius",
+     "Vireo solitarius"
+  )
+  ) 
+
+```
+
+```{r}
+psp_comb_long$dataset <- "p"
+
+psp_comb_long <- 
+  psp_comb_long %>% 
+  dplyr::select(
+    # district_plot_measurement, 
+    plot_id    = district_plot,
+    obs_date   = date_v,
+    dataset,
+    measure_year,
+    binomial,
+    obs,
+    dem, edge, nbr, 
+    understory = pt5to2,
+    kurtosis   = zkurt,
+    height90   = zq90
+  )
+
+ebird_comb_long <- 
+  ebird_comb_long %>% 
+  dplyr::select(
+    # district_plot_measurement, 
+    plot_id    = checklist_id,
+    obs_date   = observation_date,
+    dataset,
+    measure_year,
+    binomial,
+    obs,
+    dem, edge, nbr, 
+    understory = pt5to2,
+    kurtosis   = zkurt,
+    height90   = zq90
+  )
+
+psp_comb_long
+ebird_comb_long
+
+```
+```{r}
+combined_df <- bind_rows(psp_comb_long, ebird_comb_long)
+```
+
+
+```{r}
+mod_df <- 
+  combined_df %>% 
+  group_by(binomial, measure_year, dataset) %>% 
+  tidyr::nest() 
+```
+
+
+```{r warning=FALSE, message=FALSE}
+mod_df <- 
+  mod_df %>% 
+  mutate(pa = map(data, find_the_best_pa_model)) 
+```
+
+```{r warning=FALSE, message=FALSE}
+mod_df <- 
+  mod_df %>% 
+  mutate(abu = map(pa, find_the_best_abu_model)) 
+```
+
+
+```{r}
+results_tb <- 
+mod_df %>% 
+  mutate(
+    abu_mae = map_dbl(abu, function(x) mae_vec(
+      truth    = x$test_complete$obs_abu, 
+      estimate = x$test_complete$prediction_abu, 
+      na_rm    = TRUE
+      )),
+    abu_low_obs = map_dbl(abu, function (x) max(x$n_obs))
+    
+  ) %>% 
+  dplyr::select(
+    binomial, dataset, measure_year,
+    abu_mae,
+    abu_low_obs
+  )
+
+```
+
+
+
+```{r warning=FALSE}
+results_tb %>% 
+  filter(abu_low_obs >= 7) %>%
+  ggplot(aes(x = abu_mae, color = dataset)) +
+  geom_density() +
+  facet_grid(~measure_year) +
+  scale_x_continuous(
+    limits = c(0, 1)
+  ) +
+  labs(
+    x = "Mean absolute error",
+    y = "Frequency"
+    ) +
+  theme_ipsum_rc()
+```
+
+
+
+
+
+
+
+
+
+
+
+

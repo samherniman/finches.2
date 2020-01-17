@@ -1,0 +1,7650 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+%
+\documentclass[
+]{article}
+\usepackage{lmodern}
+\usepackage{amssymb,amsmath}
+\usepackage{ifxetex,ifluatex}
+\ifnum 0\ifxetex 1\fi\ifluatex 1\fi=0 % if pdftex
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+  pdftitle={Best subset regression on some Avian species from abundance data from Newfoundland},
+  hidelinks,
+  pdfcreator={LaTeX via pandoc}}
+\urlstyle{same} % disable monospaced font for URLs
+\usepackage[margin=1in]{geometry}
+\usepackage{color}
+\usepackage{fancyvrb}
+\newcommand{\VerbBar}{|}
+\newcommand{\VERB}{\Verb[commandchars=\\\{\}]}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{commandchars=\\\{\}}
+% Add ',fontsize=\small' for more characters per line
+\usepackage{framed}
+\definecolor{shadecolor}{RGB}{248,248,248}
+\newenvironment{Shaded}{\begin{snugshade}}{\end{snugshade}}
+\newcommand{\AlertTok}[1]{\textcolor[rgb]{0.94,0.16,0.16}{#1}}
+\newcommand{\AnnotationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\AttributeTok}[1]{\textcolor[rgb]{0.77,0.63,0.00}{#1}}
+\newcommand{\BaseNTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\BuiltInTok}[1]{#1}
+\newcommand{\CharTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\CommentTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\CommentVarTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ConstantTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ControlFlowTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\DataTypeTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{#1}}
+\newcommand{\DecValTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\DocumentationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\ErrorTok}[1]{\textcolor[rgb]{0.64,0.00,0.00}{\textbf{#1}}}
+\newcommand{\ExtensionTok}[1]{#1}
+\newcommand{\FloatTok}[1]{\textcolor[rgb]{0.00,0.00,0.81}{#1}}
+\newcommand{\FunctionTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\ImportTok}[1]{#1}
+\newcommand{\InformationTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\newcommand{\KeywordTok}[1]{\textcolor[rgb]{0.13,0.29,0.53}{\textbf{#1}}}
+\newcommand{\NormalTok}[1]{#1}
+\newcommand{\OperatorTok}[1]{\textcolor[rgb]{0.81,0.36,0.00}{\textbf{#1}}}
+\newcommand{\OtherTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{#1}}
+\newcommand{\PreprocessorTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textit{#1}}}
+\newcommand{\RegionMarkerTok}[1]{#1}
+\newcommand{\SpecialCharTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\SpecialStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\StringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\VariableTok}[1]{\textcolor[rgb]{0.00,0.00,0.00}{#1}}
+\newcommand{\VerbatimStringTok}[1]{\textcolor[rgb]{0.31,0.60,0.02}{#1}}
+\newcommand{\WarningTok}[1]{\textcolor[rgb]{0.56,0.35,0.01}{\textbf{\textit{#1}}}}
+\usepackage{graphicx,grffile}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+\setcounter{secnumdepth}{-\maxdimen} % remove section numbering
+
+\title{Best subset regression on some Avian species from abundance data from
+Newfoundland}
+\author{}
+\date{\vspace{-2.5em}}
+
+\begin{document}
+\maketitle
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{Sys.time}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "2020-01-16 16:16:45 PST"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(finches}\FloatTok{.2}\NormalTok{)}
+\KeywordTok{library}\NormalTok{(dplyr)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## 
+## Attaching package: 'dplyr'
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:stats':
+## 
+##     filter, lag
+\end{verbatim}
+
+\begin{verbatim}
+## The following objects are masked from 'package:base':
+## 
+##     intersect, setdiff, setequal, union
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(purrr)}
+\KeywordTok{library}\NormalTok{(here)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## here() starts at D:/github/finches.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(yardstick)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'yardstick' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{verbatim}
+## For binary classification, the first factor level is assumed to be the event.
+## Set the global option `yardstick.event_first` to `FALSE` to change this.
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(ggplot2)}
+\KeywordTok{library}\NormalTok{(hrbrthemes)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## NOTE: Either Arial Narrow or Roboto Condensed fonts are required to use these themes.
+\end{verbatim}
+
+\begin{verbatim}
+##       Please use hrbrthemes::import_roboto_condensed() to install Roboto Condensed and
+\end{verbatim}
+
+\begin{verbatim}
+##       if Arial Narrow is not on your system, please see https://bit.ly/arialnarrow
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(}\StringTok{"tidylog"}\NormalTok{, }\DataTypeTok{warn.conflicts =} \OtherTok{FALSE}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning: package 'tidylog' was built under R version 3.6.2
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{set.seed}\NormalTok{(}\DecValTok{1037}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psp_comb_long   <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"index"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"psp_combined_imp_spec_obs.rds"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+\NormalTok{    pt5to2 }\OperatorTok{>=}\StringTok{ }\DecValTok{0}\NormalTok{,}
+    \CommentTok{# zkurt >= 0,}
+\NormalTok{    zq90 }\OperatorTok{>=}\StringTok{ }\DecValTok{0}\NormalTok{,}
+\NormalTok{    dem }\OperatorTok{<}\StringTok{ }\DecValTok{814}\NormalTok{, }\CommentTok{# the highest point in NL is 814 m}
+\NormalTok{    edge }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\CommentTok{# include points that are on the edge of the forest}
+\NormalTok{    binomial }\OperatorTok{==}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+     \StringTok{"Setophaga striata"}\NormalTok{,}
+     \StringTok{"Setophaga virens"}\NormalTok{,}
+     \StringTok{"Empidonax flaviventris"}\NormalTok{,}
+     \StringTok{"Perisoreus canadensis"}\NormalTok{,}
+     \StringTok{"Poecile hudsonicus"}\NormalTok{,}
+     \StringTok{"Sitta canadensis"}\NormalTok{,}
+     \StringTok{"Mniotilta varia"}\NormalTok{,}
+     \StringTok{"Seiurus aurocapilla"}\NormalTok{,}
+     \StringTok{"Contopus cooperi"}\NormalTok{,}
+     \StringTok{"Cyanocitta cristata"}\NormalTok{, }
+     \StringTok{"Corvus corax"}\NormalTok{, }
+     \StringTok{"Pinicola enucleator"}\NormalTok{, }
+     \StringTok{"Spinus pinus"}\NormalTok{, }
+     \StringTok{"Spinus tristis"}\NormalTok{, }
+     \StringTok{"Haemorhous purpureus"}\NormalTok{, }
+     \StringTok{"Gavia immer"}\NormalTok{, }
+     \StringTok{"Setophaga petechia"}\NormalTok{, }
+     \StringTok{"Setophaga magnolia"}\NormalTok{, }
+     \StringTok{"Setophaga coronata"}\NormalTok{, }
+     \StringTok{"Setophaga ruticilla"}\NormalTok{, }
+     \StringTok{"Parkesia noveboracensis"}\NormalTok{, }
+     \StringTok{"Geothlypis philadelphia"}\NormalTok{, }
+     \StringTok{"Geothlypis trichas"}\NormalTok{, }
+     \StringTok{"Cardellina pusilla"}\NormalTok{, }
+     \StringTok{"Passerella iliaca"}\NormalTok{, }
+     \StringTok{"Melospiza lincolnii"}\NormalTok{, }
+     \StringTok{"Zonotrichia albicollis"}\NormalTok{, }
+     \StringTok{"Junco hyemalis"}\NormalTok{,  }
+     \StringTok{"Picoides arcticus"}\NormalTok{, }
+     \StringTok{"Regulus satrapa"}\NormalTok{, }
+     \StringTok{"Regulus calendula"}\NormalTok{, }
+     \StringTok{"Tringa melanoleuca"}\NormalTok{,}
+     \StringTok{"Gallinago delicata"}\NormalTok{, }
+     \StringTok{"Troglodytes hiemalis"}\NormalTok{, }
+     \StringTok{"Catharus ustulatus"}\NormalTok{, }
+     \StringTok{"Catharus guttatus"}\NormalTok{, }
+     \StringTok{"Turdus migratorius"}\NormalTok{,}
+     \StringTok{"Vireo solitarius"}
+\NormalTok{  )}
+\NormalTok{  ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in binomial == c("Setophaga striata", "Setophaga virens", "Empidonax
+## flaviventris", : longer object length is not a multiple of shorter object length
+\end{verbatim}
+
+\begin{verbatim}
+## Loading required package: lubridate
+\end{verbatim}
+
+\begin{verbatim}
+## 
+## Attaching package: 'lubridate'
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:here':
+## 
+##     here
+\end{verbatim}
+
+\begin{verbatim}
+## The following object is masked from 'package:base':
+## 
+##     date
+\end{verbatim}
+
+\begin{verbatim}
+## filter: removed 4,654,033 rows (>99%), 8,999 rows remaining
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ebird_comb_long <-}\StringTok{ }\KeywordTok{readRDS}\NormalTok{(here}\OperatorTok{::}\KeywordTok{here}\NormalTok{(}\StringTok{"index"}\NormalTok{, }\StringTok{"data"}\NormalTok{, }\StringTok{"ebird_combined_imp_spec_obs_long.rds"}\NormalTok{)) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(}
+\NormalTok{    pt5to2 }\OperatorTok{>=}\StringTok{ }\DecValTok{0}\NormalTok{,}
+    \CommentTok{# zkurt >= 0,}
+\NormalTok{    zq90 }\OperatorTok{>=}\StringTok{ }\DecValTok{0}\NormalTok{,}
+\NormalTok{    dem }\OperatorTok{<}\StringTok{ }\DecValTok{814}\NormalTok{, }\CommentTok{# the highest point in NL is 814 m}
+\NormalTok{    edge }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{, }\CommentTok{# include points that are on the edge of the forest}
+\NormalTok{    binomial }\OperatorTok{==}\StringTok{ }\KeywordTok{c}\NormalTok{(}
+     \StringTok{"Setophaga striata"}\NormalTok{,}
+     \StringTok{"Setophaga virens"}\NormalTok{,}
+     \StringTok{"Empidonax flaviventris"}\NormalTok{,}
+     \StringTok{"Perisoreus canadensis"}\NormalTok{,}
+     \StringTok{"Poecile hudsonicus"}\NormalTok{,}
+     \StringTok{"Sitta canadensis"}\NormalTok{,}
+     \StringTok{"Mniotilta varia"}\NormalTok{,}
+     \StringTok{"Seiurus aurocapilla"}\NormalTok{,}
+     \StringTok{"Contopus cooperi"}\NormalTok{,}
+     \StringTok{"Cyanocitta cristata"}\NormalTok{, }
+     \StringTok{"Corvus corax"}\NormalTok{, }
+     \StringTok{"Pinicola enucleator"}\NormalTok{, }
+     \StringTok{"Spinus pinus"}\NormalTok{, }
+     \StringTok{"Spinus tristis"}\NormalTok{, }
+     \StringTok{"Haemorhous purpureus"}\NormalTok{, }
+     \StringTok{"Gavia immer"}\NormalTok{, }
+     \StringTok{"Setophaga petechia"}\NormalTok{, }
+     \StringTok{"Setophaga magnolia"}\NormalTok{, }
+     \StringTok{"Setophaga coronata"}\NormalTok{, }
+     \StringTok{"Setophaga ruticilla"}\NormalTok{, }
+     \StringTok{"Parkesia noveboracensis"}\NormalTok{, }
+     \StringTok{"Geothlypis philadelphia"}\NormalTok{, }
+     \StringTok{"Geothlypis trichas"}\NormalTok{, }
+     \StringTok{"Cardellina pusilla"}\NormalTok{, }
+     \StringTok{"Passerella iliaca"}\NormalTok{, }
+     \StringTok{"Melospiza lincolnii"}\NormalTok{, }
+     \StringTok{"Zonotrichia albicollis"}\NormalTok{, }
+     \StringTok{"Junco hyemalis"}\NormalTok{,  }
+     \StringTok{"Picoides arcticus"}\NormalTok{, }
+     \StringTok{"Regulus satrapa"}\NormalTok{, }
+     \StringTok{"Regulus calendula"}\NormalTok{, }
+     \StringTok{"Tringa melanoleuca"}\NormalTok{,}
+     \StringTok{"Gallinago delicata"}\NormalTok{, }
+     \StringTok{"Troglodytes hiemalis"}\NormalTok{, }
+     \StringTok{"Catharus ustulatus"}\NormalTok{, }
+     \StringTok{"Catharus guttatus"}\NormalTok{, }
+     \StringTok{"Turdus migratorius"}\NormalTok{,}
+     \StringTok{"Vireo solitarius"}
+\NormalTok{  )}
+\NormalTok{  ) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Warning in binomial == c("Setophaga striata", "Setophaga virens", "Empidonax
+## flaviventris", : longer object length is not a multiple of shorter object length
+\end{verbatim}
+
+\begin{verbatim}
+## filter: removed 13,544,427 rows (>99%), 9,069 rows remaining
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{psp_comb_long}\OperatorTok{$}\NormalTok{dataset <-}\StringTok{ "p"}
+
+\NormalTok{psp_comb_long <-}\StringTok{ }
+\StringTok{  }\NormalTok{psp_comb_long }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}
+    \CommentTok{# district_plot_measurement, }
+    \DataTypeTok{plot_id    =}\NormalTok{ district_plot,}
+    \DataTypeTok{obs_date   =}\NormalTok{ date_v,}
+\NormalTok{    dataset,}
+\NormalTok{    measure_year,}
+\NormalTok{    binomial,}
+\NormalTok{    obs,}
+\NormalTok{    dem, edge, nbr, }
+    \DataTypeTok{understory =}\NormalTok{ pt5to2,}
+    \DataTypeTok{kurtosis   =}\NormalTok{ zkurt,}
+    \DataTypeTok{height90   =}\NormalTok{ zq90}
+\NormalTok{  )}
+
+\NormalTok{ebird_comb_long <-}\StringTok{ }
+\StringTok{  }\NormalTok{ebird_comb_long }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}
+    \CommentTok{# district_plot_measurement, }
+    \DataTypeTok{plot_id    =}\NormalTok{ checklist_id,}
+    \DataTypeTok{obs_date   =}\NormalTok{ observation_date,}
+\NormalTok{    dataset,}
+\NormalTok{    measure_year,}
+\NormalTok{    binomial,}
+\NormalTok{    obs,}
+\NormalTok{    dem, edge, nbr, }
+    \DataTypeTok{understory =}\NormalTok{ pt5to2,}
+    \DataTypeTok{kurtosis   =}\NormalTok{ zkurt,}
+    \DataTypeTok{height90   =}\NormalTok{ zq90}
+\NormalTok{  )}
+
+\NormalTok{psp_comb_long}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 8,999 x 12
+##    plot_id obs_date   dataset measure_year binomial   obs   dem  edge   nbr
+##    <chr>   <date>     <chr>   <chr>        <chr>    <dbl> <dbl> <dbl> <dbl>
+##  1 1_1010… NA         p       2011         Picoide…     0    96 166.  0.729
+##  2 1_1010… NA         p       2016         Sitta c…     0    96  63.5 0.752
+##  3 1_1010… NA         p       2016         Tringa …     0    96  63.5 0.752
+##  4 1_1010… 2010-05-26 p       2016         Geothly…     0    96  63.5 0.752
+##  5 1_1010… NA         p       2011         Geothly…     0    96 166.  0.729
+##  6 1_1010… 2010-05-26 p       2011         Setopha…     0    96 166.  0.729
+##  7 1_1010… NA         p       2011         Empidon…     0    96 166.  0.729
+##  8 1_1010… NA         p       2011         Gallina…     0    96 166.  0.729
+##  9 1_1010… NA         p       2016         Junco h…     0    79  67.1 0.671
+## 10 1_1010… NA         p       2016         Vireo s…     0    79  67.1 0.671
+## # … with 8,989 more rows, and 3 more variables: understory <dbl>,
+## #   kurtosis <dbl>, height90 <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{ebird_comb_long}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 9,069 x 12
+##    plot_id obs_date   dataset measure_year binomial   obs   dem  edge   nbr
+##    <chr>   <date>     <chr>   <chr>        <chr>    <dbl> <dbl> <dbl> <dbl>
+##  1 S16994… 2014-02-14 e       2011         Spinus …     0    56  30   0.558
+##  2 S16954… 2014-02-15 e       2011         Contopu…     0    78  30   0.734
+##  3 S16954… 2014-02-15 e       2011         Gallina…     0    78  30   0.734
+##  4 S17140… 2014-02-22 e       2016         Gavia i…     0    31  60   0.614
+##  5 S17140… 2014-02-22 e       2011         Setopha…     0    31  67.1 0.609
+##  6 S16956… 2014-02-14 e       2016         Cardell…     0   128  42.4 0.639
+##  7 S16956… 2014-02-14 e       2016         Pinicol…     0   128  42.4 0.639
+##  8 S16956… 2014-02-14 e       2011         Poecile…     0   128  42.4 0.664
+##  9 S16956… 2014-02-14 e       2016         Setopha…     0   128  42.4 0.639
+## 10 S16956… 2014-02-14 e       2016         Troglod…     0   128  42.4 0.639
+## # … with 9,059 more rows, and 3 more variables: understory <dbl>,
+## #   kurtosis <dbl>, height90 <dbl>
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{combined_df <-}\StringTok{ }\KeywordTok{bind_rows}\NormalTok{(psp_comb_long, ebird_comb_long)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_df <-}\StringTok{ }
+\StringTok{  }\NormalTok{combined_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{group_by}\NormalTok{(binomial, measure_year, dataset) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{tidyr}\OperatorTok{::}\KeywordTok{nest}\NormalTok{() }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## group_by: 3 grouping variables (binomial, measure_year, dataset)
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_df <-}\StringTok{ }
+\StringTok{  }\NormalTok{mod_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{pa =} \KeywordTok{map}\NormalTok{(data, find_the_best_pa_model)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   12)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     4,764    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       4,764
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   14)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,057    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,057
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     7,904    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       7,904
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (    8)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,509    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,509
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   12)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     7,537    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       7,537
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,639    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,639
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   15)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,619    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,619
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (    9)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,519    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,519
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,292    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,292
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   14)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,161    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,161
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (    4)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     4,770    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       4,770
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   13)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,818    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,818
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   12)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,199    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,199
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,976    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,976
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   16)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     9,233    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       9,233
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   15)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,177    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,177
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   10)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     4,073    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       4,073
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,110    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,110
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   13)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,787    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,787
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,521    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,521
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   12)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,885    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,885
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   10)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,731    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,731
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   13)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     9,031    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       9,031
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   16)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,312    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,312
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   16)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     9,221    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       9,221
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   12)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     7,602    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       7,602
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   11)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,380    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,380
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   13)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,579    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,579
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (    6)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,065    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,065
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   14)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,989    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,989
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   15)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,580    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,580
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   15)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,917    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,917
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   10)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,360    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,360
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (    9)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     5,380    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       5,380
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   17)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     9,313    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       9,313
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   10)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     6,068    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       6,068
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   13)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,618    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,618
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x       0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  (   12)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     8,055    (includes duplicates)
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =======
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       8,055
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     187
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       187
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     193
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       193
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     193
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       193
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     197
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       197
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     192
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       192
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     186
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       186
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     197
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       197
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     196
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       196
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     195
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       195
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     186
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       186
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     190
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       190
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     197
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       197
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     190
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       190
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     194
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       194
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     194
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       194
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     195
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       195
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 44)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     179
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       179
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 45)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     182
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       182
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     197
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       197
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     190
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       190
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     186
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       186
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 44)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     179
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       179
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     187
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       187
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     190
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       190
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 44)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     180
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       180
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     190
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       190
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 46)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     186
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       186
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     193
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       193
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     189
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       189
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: fitted probabilities numerically 0 or 1 occurred
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     193
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       193
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 48)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     194
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       194
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+
+## Warning: glm.fit: algorithm did not converge
+\end{verbatim}
+
+\begin{verbatim}
+## Joining, by = c("edge", "nbr", "understory", "kurtosis", "height90")
+\end{verbatim}
+
+\begin{verbatim}
+## left_join: added 4 columns (plot_id, obs_date, obs, dem)
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in x     0
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows only in y  ( 47)
+\end{verbatim}
+
+\begin{verbatim}
+##            > matched rows     190
+\end{verbatim}
+
+\begin{verbatim}
+##            >                 =====
+\end{verbatim}
+
+\begin{verbatim}
+##            > rows total       190
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## mutate (grouped): new variable 'pa' with 76 unique values and 0% NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mod_df <-}\StringTok{ }
+\StringTok{  }\NormalTok{mod_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}\DataTypeTok{abu =} \KeywordTok{map}\NormalTok{(pa, find_the_best_abu_model)) }
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## Fixed term is "(Intercept)"
+\end{verbatim}
+
+\begin{verbatim}
+## drop_na: no rows removed
+\end{verbatim}
+
+\begin{verbatim}
+## mutate (grouped): new variable 'abu' with 76 unique values and 0% NA
+\end{verbatim}
+
+Use this next bit to develop metrics from the models
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results_tb <-}\StringTok{ }
+\NormalTok{mod_df }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{mutate}\NormalTok{(}
+    \DataTypeTok{abu_mae =} \KeywordTok{map_dbl}\NormalTok{(abu, }\ControlFlowTok{function}\NormalTok{(x) }\KeywordTok{mae_vec}\NormalTok{(}
+      \DataTypeTok{truth    =}\NormalTok{ x}\OperatorTok{$}\NormalTok{test_complete}\OperatorTok{$}\NormalTok{obs_abu, }
+      \DataTypeTok{estimate =}\NormalTok{ x}\OperatorTok{$}\NormalTok{test_complete}\OperatorTok{$}\NormalTok{prediction_abu, }
+      \DataTypeTok{na_rm    =} \OtherTok{TRUE}
+\NormalTok{      )),}
+    \DataTypeTok{abu_low_obs =} \KeywordTok{map_dbl}\NormalTok{(abu, }\ControlFlowTok{function}\NormalTok{ (x) }\KeywordTok{max}\NormalTok{(x}\OperatorTok{$}\NormalTok{n_obs))}
+    
+\NormalTok{  ) }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\NormalTok{dplyr}\OperatorTok{::}\KeywordTok{select}\NormalTok{(}
+\NormalTok{    binomial, dataset, measure_year,}
+\NormalTok{    abu_mae,}
+\NormalTok{    abu_low_obs}
+\NormalTok{  )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## mutate (grouped): new variable 'abu_mae' with 53 unique values and 0% NA
+\end{verbatim}
+
+\begin{verbatim}
+##                   new variable 'abu_low_obs' with 30 unique values and 0% NA
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results_tb}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## # A tibble: 76 x 5
+## # Groups:   dataset, measure_year, binomial [76]
+##    binomial                dataset measure_year abu_mae abu_low_obs
+##    <chr>                   <chr>   <chr>          <dbl>       <dbl>
+##  1 Picoides arcticus       p       2011          0                0
+##  2 Sitta canadensis        p       2016          0.0308           2
+##  3 Tringa melanoleuca      p       2016          0.0104           2
+##  4 Geothlypis philadelphia p       2016          0                0
+##  5 Geothlypis trichas      p       2011          0.0403           4
+##  6 Setophaga petechia      p       2011          0                0
+##  7 Empidonax flaviventris  p       2011          0.0530           7
+##  8 Gallinago delicata      p       2011          0                0
+##  9 Junco hyemalis          p       2016          0.0717          10
+## 10 Vireo solitarius        p       2016          0                0
+## # … with 66 more rows
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{results_tb }\OperatorTok{%>%}\StringTok{ }
+\StringTok{  }\KeywordTok{filter}\NormalTok{(abu_low_obs }\OperatorTok{>=}\StringTok{ }\DecValTok{7}\NormalTok{) }\OperatorTok{%>%}
+\StringTok{  }\KeywordTok{ggplot}\NormalTok{(}\KeywordTok{aes}\NormalTok{(}\DataTypeTok{x =}\NormalTok{ abu_mae, }\DataTypeTok{color =}\NormalTok{ dataset)) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{geom_density}\NormalTok{() }\OperatorTok{+}
+\StringTok{  }\KeywordTok{facet_grid}\NormalTok{(}\OperatorTok{~}\NormalTok{measure_year) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{scale_x_continuous}\NormalTok{(}
+    \DataTypeTok{limits =} \KeywordTok{c}\NormalTok{(}\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\NormalTok{  ) }\OperatorTok{+}
+\StringTok{  }\KeywordTok{labs}\NormalTok{(}
+    \DataTypeTok{x =} \StringTok{"Mean absolute error"}\NormalTok{,}
+    \DataTypeTok{y =} \StringTok{"Frequency"}
+\NormalTok{    )}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## filter (grouped): removed 36 rows (47%), 40 rows remaining
+\end{verbatim}
+
+\begin{verbatim}
+## Warning: Removed 7 rows containing non-finite values (stat_density).
+\end{verbatim}
+
+\includegraphics{060_model_psp_20191121_files/figure-latex/unnamed-chunk-9-1.pdf}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \KeywordTok{theme_ipsum_rc}\NormalTok{()}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## List of 69
+##  $ line                      :List of 6
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 0.523
+##   ..$ linetype     : num 1
+##   ..$ lineend      : chr "butt"
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ rect                      :List of 5
+##   ..$ fill         : chr "white"
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 0.523
+##   ..$ linetype     : num 1
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_rect" "element"
+##  $ text                      :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : chr "black"
+##   ..$ size         : num 11.5
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : num 0
+##   ..$ lineheight   : num 0.9
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : logi FALSE
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x              :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : NULL
+##   ..$ size         : num 9
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 2.88pt 0pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.x.top          :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 2.88pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.y              :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : NULL
+##   ..$ size         : num 9
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 1
+##   ..$ angle        : num 90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 2.88pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.title.y.right        :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : NULL
+##   ..$ size         : num 9
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 0
+##   ..$ angle        : num 90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 0pt 2.88pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text                 :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : chr "grey30"
+##   ..$ size         : num 11.5
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : num 11.5
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.x.top           :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : num 0
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 2.3pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.y               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : num 11.5
+##   ..$ hjust        : num 1
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.text.y.right         :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 0pt 2.3pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ axis.ticks                : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ axis.ticks.length         : 'unit' num 2.88pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ axis.ticks.length.x       : NULL
+##  $ axis.ticks.length.x.top   : NULL
+##  $ axis.ticks.length.x.bottom: NULL
+##  $ axis.ticks.length.y       : NULL
+##  $ axis.ticks.length.y.left  : NULL
+##  $ axis.ticks.length.y.right : NULL
+##  $ axis.line                 : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ axis.line.x               : NULL
+##  $ axis.line.y               : NULL
+##  $ legend.background         : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ legend.margin             : 'margin' num [1:4] 5.75pt 5.75pt 5.75pt 5.75pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ legend.spacing            : 'unit' num 11.5pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ legend.spacing.x          : NULL
+##  $ legend.spacing.y          : NULL
+##  $ legend.key                : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ legend.key.size           : 'unit' num 1.2lines
+##   ..- attr(*, "valid.unit")= int 3
+##   ..- attr(*, "unit")= chr "lines"
+##  $ legend.key.height         : NULL
+##  $ legend.key.width          : NULL
+##  $ legend.text               :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 0.8
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.text.align         : NULL
+##  $ legend.title              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ legend.title.align        : NULL
+##  $ legend.position           : chr "right"
+##  $ legend.direction          : NULL
+##  $ legend.justification      : chr "center"
+##  $ legend.box                : NULL
+##  $ legend.box.margin         : 'margin' num [1:4] 0cm 0cm 0cm 0cm
+##   ..- attr(*, "valid.unit")= int 1
+##   ..- attr(*, "unit")= chr "cm"
+##  $ legend.box.background     : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ legend.box.spacing        : 'unit' num 11.5pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ panel.background          : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ panel.border              : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ panel.spacing             : 'unit' num 2lines
+##   ..- attr(*, "valid.unit")= int 3
+##   ..- attr(*, "unit")= chr "lines"
+##  $ panel.spacing.x           : NULL
+##  $ panel.spacing.y           : NULL
+##  $ panel.grid                :List of 6
+##   ..$ colour       : chr "#cccccc"
+##   ..$ size         : num 0.2
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ panel.grid.minor          :List of 6
+##   ..$ colour       : chr "#cccccc"
+##   ..$ size         : num 0.15
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ panel.ontop               : logi FALSE
+##  $ plot.background           : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ plot.title                :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "bold"
+##   ..$ colour       : NULL
+##   ..$ size         : num 18
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 10pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.subtitle             :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : NULL
+##   ..$ size         : num 13
+##   ..$ hjust        : num 0
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 0pt 0pt 15pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.caption              :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : NULL
+##   ..$ size         : num 9
+##   ..$ hjust        : num 1
+##   ..$ vjust        : num 1
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 10pt 0pt 0pt 0pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.tag                  :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : 'rel' num 1.2
+##   ..$ hjust        : num 0.5
+##   ..$ vjust        : num 0.5
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ plot.tag.position         : chr "topleft"
+##  $ plot.margin               : 'margin' num [1:4] 30pt 30pt 30pt 30pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ strip.background          : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ strip.placement           : chr "inside"
+##  $ strip.text                :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : chr "plain"
+##   ..$ colour       : chr "grey10"
+##   ..$ size         : num 12
+##   ..$ hjust        : num 0
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : 'margin' num [1:4] 4.6pt 4.6pt 4.6pt 4.6pt
+##   .. ..- attr(*, "valid.unit")= int 8
+##   .. ..- attr(*, "unit")= chr "pt"
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ strip.text.x              : NULL
+##  $ strip.text.y              :List of 11
+##   ..$ family       : NULL
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : NULL
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : num -90
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi TRUE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  $ strip.switch.pad.grid     : 'unit' num 2.88pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ strip.switch.pad.wrap     : 'unit' num 2.88pt
+##   ..- attr(*, "valid.unit")= int 8
+##   ..- attr(*, "unit")= chr "pt"
+##  $ panel.grid.major          :List of 6
+##   ..$ colour       : chr "#cccccc"
+##   ..$ size         : num 0.2
+##   ..$ linetype     : NULL
+##   ..$ lineend      : NULL
+##   ..$ arrow        : logi FALSE
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_line" "element"
+##  $ axis.ticks.x              : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ axis.ticks.y              : list()
+##   ..- attr(*, "class")= chr [1:2] "element_blank" "element"
+##  $ axis.title                :List of 11
+##   ..$ family       : chr "Roboto Condensed"
+##   ..$ face         : NULL
+##   ..$ colour       : NULL
+##   ..$ size         : num 9
+##   ..$ hjust        : NULL
+##   ..$ vjust        : NULL
+##   ..$ angle        : NULL
+##   ..$ lineheight   : NULL
+##   ..$ margin       : NULL
+##   ..$ debug        : NULL
+##   ..$ inherit.blank: logi FALSE
+##   ..- attr(*, "class")= chr [1:2] "element_text" "element"
+##  - attr(*, "class")= chr [1:2] "theme" "gg"
+##  - attr(*, "complete")= logi TRUE
+##  - attr(*, "validate")= logi TRUE
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+  \CommentTok{# scale_fill_manual(values = pal)}
+\end{Highlighting}
+\end{Shaded}
+
+\end{document}
